@@ -32,17 +32,29 @@
 
     <script>
         // Array of available fonts for "Goovo" text
+        // const goovoFonts = [
+        //     'Playfair Display',
+        //     'Montserrat',
+        //     'Poppins',
+        //     'Raleway',
+        //     'Outfit',
+        //     'Space Grotesk',
+        //     'Sora',
+        //     'Rubik',
+        //     'Nunito',
+        //     'Quicksand'
+        // ];
         const goovoFonts = [
             'Playfair Display',
             'Montserrat',
-            'Poppins',
-            'Raleway',
-            'Outfit',
-            'Space Grotesk',
-            'Sora',
-            'Rubik',
-            'Nunito',
-            'Quicksand'
+            'Rock Salt',
+            'Pacifico',
+            'Caveat',
+            'Amatic SC',
+            'Dancing Script',
+            'Schoolbell',
+            'Doto',
+            'Turret Road'
         ];
 
         // Array of "Goovo" in different languages (split into two parts for coloring)
@@ -55,31 +67,44 @@
             { part1: 'جو', part2: 'فو', lang: 'Arabic' },
             { part1: 'Gu', part2: 'vo', lang: 'Spanish' },
             { part1: 'Gou', part2: 'vo', lang: 'French' },
-            { part1: 'Gu', part2: 'wo', lang: 'German' }
+            { part1: 'Gu', part2: 'wo', lang: 'German' },
+
+            { part1: 'গু', part2: 'ৱ', lang: 'Assamese' },
+            { part1: 'গু', part2: 'ভ', lang: 'Bengali' },
+            { part1: 'गु', part2: 'ब', lang: 'Bodo' },
+            { part1: 'ગુ', part2: 'વ', lang: 'Gujarati' },
+            { part1: 'ಗು', part2: 'ವ', lang: 'Kannada' },
+            { part1: 'गु', part2: 'व', lang: 'Kashmiri' },
+            { part1: 'ഗു', part2: 'വ', lang: 'Malayalam' },
+            { part1: 'ଗୁ', part2: 'ଵ', lang: 'Odia' },
+            { part1: 'ਗੁ', part2: 'ਵ', lang: 'Punjabi' },
+            { part1: 'கு', part2: 'வ', lang: 'Tamil' },
+            { part1: 'గు', part2: 'వ', lang: 'Telugu' },
+            { part1: 'گو', part2: 'وو', lang: 'Urdu' }
         ];
 
-        // Function to get a random item without repeating
-        function getRandomItem(items, storageKey) {
-            let usedItems = JSON.parse(localStorage.getItem(storageKey) || '[]');
-            let availableItems = items.filter((_, index) => !usedItems.includes(index));
+        // Sequential index counters
+        let fontIndex = 0;
+        let langIndex = 0;
 
-            if (availableItems.length === 0) {
-                usedItems = [];
-                availableItems = [...items];
-                localStorage.setItem(storageKey, '[]');
+        // Function to get next item in sequence
+        function getNextItem(items, indexKey) {
+            let currentIndex = indexKey === 'font' ? fontIndex : langIndex;
+            const selectedItem = items[currentIndex];
+
+            // Increment and wrap around
+            currentIndex = (currentIndex + 1) % items.length;
+
+            if (indexKey === 'font') {
+                fontIndex = currentIndex;
+            } else {
+                langIndex = currentIndex;
             }
-
-            const randomIndex = Math.floor(Math.random() * availableItems.length);
-            const selectedItem = availableItems[randomIndex];
-            const originalIndex = items.indexOf(selectedItem);
-
-            usedItems.push(originalIndex);
-            localStorage.setItem(storageKey, JSON.stringify(usedItems));
 
             return selectedItem;
         }
 
-        // Apply random font and language every 2 seconds
+        // Apply font and language in sequence every 4 seconds
         setInterval(() => {
             const goovoElements = document.querySelectorAll('.goovo-brand');
 
@@ -98,26 +123,24 @@
 
             // After exit animation, update content and play entry animation
             setTimeout(() => {
-                const randomFont = getRandomItem(goovoFonts, 'usedGoovoFonts');
-                const randomLang = getRandomItem(goovoLanguages, 'usedGoovoLangs');
+                const nextFont = getNextItem(goovoFonts, 'font');
+                const nextLang = getNextItem(goovoLanguages, 'lang');
 
                 goovoElements.forEach(element => {
-                    element.style.fontFamily = `'${randomFont}', sans-serif`;
+                    element.style.fontFamily = `'${nextFont}', sans-serif`;
                     const part1Span = element.querySelector('.goovo-part1');
                     const part2Span = element.querySelector('.goovo-part2');
 
                     if (part1Span) {
-                        part1Span.textContent = randomLang.part1;
+                        part1Span.textContent = nextLang.part1;
                         part1Span.style.animation = 'floatUp 0.5s ease-out forwards';
                     }
                     if (part2Span) {
-                        part2Span.textContent = randomLang.part2;
+                        part2Span.textContent = nextLang.part2;
                         part2Span.style.animation = 'floatDown 0.5s ease-out forwards';
                     }
-                    element.title = `"Goovo" in ${randomLang.lang}`;
+                    element.title = `"Goovo" in ${nextLang.lang}`;
                 });
-
-                // console.log('Goovo font:', randomFont, '| Language:', randomLang.lang, '| Text:', randomLang.part1 + randomLang.part2);
             }, 400);
         }, 4000);
     </script>
@@ -183,6 +206,27 @@
             animation: floatDown 0.5s ease-out forwards;
             opacity: 0;
         }
+
+        .bento-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .search-highlight {
+            background-color: rgba(255, 255, 0, 0.3);
+            border-radius: 2px;
+        }
     </style>
 
 </head>
@@ -191,9 +235,9 @@
 
 
     <!-- Navigation -->
-    <nav class="relative z-50">
+    <nav class="relative z-50 sticky top-0 w-full bg-zinc-900">
         <div class="max-w-7xl mx-auto">
-            <div class="glass px-4 py-4 flex items-center justify-between border-b border-zinc-700 gap-16">
+            <div class="px-4 py-4 flex items-center justify-between border-b border-zinc-700 gap-16">
                 <div class="flex items-center gap-2 basis-36">
                     <div class="">
                         <!-- <span class="text-xl font-bold">G</span> -->
@@ -204,7 +248,7 @@
                 </div>
 
                 <div class="hidden md:flex items-center gap-8 grow">
-                    <input type="text" placeholder="Search"
+                    <input type="text" placeholder="Start exploring..."
                         class="input input-bordered w-full bg-transparent color-[#f5f5f0] outline-none border border-zinc-700 px-6 py-2 rounded-xl">
                 </div>
 
@@ -237,7 +281,7 @@
                             <circle cx="12" cy="12" r="10" />
                         </svg>
                     </button>
-                    <button class=" h-8 w-8 rounded-full font-medium border border-zinc-700 bg-white">
+                    <button class=" h-8 w-8 rounded-full font-medium border border-[#90EE90] bg-white">
                         <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="profile">
                     </button>
                 </div>
@@ -245,7 +289,264 @@
         </div>
     </nav>
     <main class="grow">
-        hlo
+
+        <!-- create plan -->
+        <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
+            <h1 class="text-3xl font-bold text-white mb-8">Create New Plan</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Plan Title</label>
+                    <input type="text"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
+                        placeholder="e.g. Summer Trip to Bali">
+                </div>
+
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Description</label>
+                    <textarea
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 h-32 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
+                        placeholder="Describe the adventure..."></textarea>
+                </div>
+
+                <div class="space-y-2 relative">
+                    <label class="text-sm font-medium text-zinc-400">Destination</label>
+                    <div class="relative">
+                        <input type="text" list="destinations"
+                            class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none"
+                            placeholder="Search city...">
+                        <datalist id="destinations">
+                            <option value="Paris, France">
+                            <option value="Tokyo, Japan">
+                            <option value="New York, USA">
+                            <option value="Bali, Indonesia">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Cover Image</label>
+                    <div class="relative w-full">
+                        <input type="file" id="file-upload" class="hidden">
+                        <label for="file-upload"
+                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
+                            <span class="truncate">Choose image...</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Start Date</label>
+                    <input type="date"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">End Date</label>
+                    <input type="date"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Total Members</label>
+                    <div
+                        class="flex items-center bg-zinc-900/50 border border-zinc-700 rounded-xl overflow-hidden h-[50px]">
+                        <button type="button"
+                            class="px-4 h-full hover:bg-zinc-800 text-white border-r border-zinc-700">-</button>
+                        <input type="number" value="1"
+                            class="w-full bg-transparent text-center text-white outline-none appearance-none"
+                            style="-moz-appearance: textfield;">
+                        <button type="button"
+                            class="px-4 h-full hover:bg-zinc-800 text-white border-l border-zinc-700">+</button>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">More Image</label>
+                    <div class="relative w-full">
+                        <input type="file" id="file-upload" class="hidden">
+                        <label for="file-upload"
+                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
+                            <span class="truncate">Choose images...</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="backdrop-blur-md lg:static lg:bg-transparent lg:border-none lg:p-0">
+                <button
+                    class="max-w-4xl mx-auto flex items-center justify-center w-full bg-green-400 hover:bg-green-500 text-black font-bold py-4 rounded-2xl shadow-lg shadow-green-500/20 transition-all active:scale-[0.98]">
+                    Create Travel Plan
+                </button>
+            </div>
+        </div>
+
+        <hr />
+        <div class="flex h-screen bg-zinc-950 text-white overflow-hidden font-sans">
+
+            <aside id="chat-sidebar"
+                class="w-full md:w-80 lg:w-96 border-r border-zinc-800 flex flex-col bg-zinc-900/50 transition-all duration-300">
+                <div class="p-4 flex justify-between items-center">
+                    <h1 class="text-2xl font-bold">Chats</h1>
+                    <button class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="px-4 mb-4">
+                    <input type="text" placeholder="Search Messenger"
+                        class="w-full bg-zinc-800 border-none rounded-full py-2 px-4 text-sm outline-none">
+                </div>
+
+                <div class="flex-1 overflow-y-auto space-y-1 px-2">
+                    <div onclick="openChat('Jane Cooper', 'https://i.pravatar.cc/150?u=jane')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=jane" class="w-12 h-12 rounded-full object-cover">
+                            <div
+                                class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-zinc-900 rounded-full">
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Jane Cooper</h3>
+                                <span class="text-xs text-zinc-500">2m</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">I'll send the travel plans over...</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main id="chat-window" class="hidden md:flex flex-1 flex-col bg-zinc-950 transition-all duration-300">
+                <header class="h-16 border-b border-zinc-800 flex items-center justify-between px-4 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <button onclick="closeChat()" class="md:hidden p-2 -ml-2 text-blue-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <img id="header-img" src="https://i.pravatar.cc/150?u=jane" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 id="header-name" class="font-bold leading-tight">Jane Cooper</h2>
+                            <p class="text-xs text-green-500">Active Now</p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm">
+                            Hey! Select a chat to see how the transition works.
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="p-4 bg-zinc-950 border-t border-zinc-800">
+                    <div class="flex items-center gap-3">
+                        <input type="text" placeholder="Aa"
+                            class="flex-1 bg-zinc-800 rounded-full px-4 py-2 outline-none text-sm">
+                        <button class="text-blue-500 font-bold">Send</button>
+                    </div>
+                </footer>
+            </main>
+        </div>
+
+        <hr />
+
+        <!-- explore -->
+        <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
+            <h1 class="text-3xl font-bold text-white mb-8">Explore</h1>
+            <div class="mb-8 md:mb-12">
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                        <i class="fas fa-search text-[#f5f5f0]"></i>
+                    </div>
+                    <input type="text" id="searchInput"
+                        class="w-full p-4 pl-12 text-[#f5f5f0] bg-transparent rounded-xl border border-zinc-500 shadow-lg focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all duration-100 outline-none"
+                        placeholder="Search images by title, category, or description...">
+                    <!-- <button id="clearSearch"
+                        class="absolute inset-y-0 right-0 flex items-center pr-4 text-zinc-400 hover:text-zinc-400 hidden">
+                        <i class="fas fa-times"></i>
+                    </button> -->
+                </div>
+                <!-- <div class="flex flex-wrap justify-center gap-2 mt-4">
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors"
+                        data-filter="all">All</button>
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium hover:bg-green-200 transition-colors"
+                        data-filter="nature">Nature</button>
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium hover:bg-purple-200 transition-colors"
+                        data-filter="city">City</button>
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors"
+                        data-filter="travel">Travel</button>
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium hover:bg-pink-200 transition-colors"
+                        data-filter="art">Art</button>
+                    <button
+                        class="filter-btn px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium hover:bg-indigo-200 transition-colors"
+                        data-filter="abstract">Abstract</button>
+                </div> -->
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div id="bentoGrid"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto">
+                <!-- Bento items will be dynamically generated here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <i class="fas fa-image text-gray-300 text-6xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">No images found</h3>
+                <p class="text-gray-500 max-w-md mx-auto">Try adjusting your search or filter to find what you're
+                    looking for.</p>
+            </div>
+
+            <!-- Image Modal -->
+            <div id="imageModal"
+                class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 hidden">
+                <div class="relative max-w-4xl w-full max-h-[90vh]">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                        <!-- Close button inside the modal at top right -->
+                        <button id="closeModal"
+                            class="absolute top-4 right-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 z-10"
+                            title="Close">
+                            <i class="fas fa-times text-lg"></i>
+                        </button>
+
+                        <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain">
+                        <div class="p-6 relative">
+                            <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2 pr-10"></h3>
+                            <p id="modalDescription" class="text-gray-600 mb-4"></p>
+                            <div class="flex flex-wrap gap-2">
+                                <span id="modalCategory"
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -279,6 +580,327 @@
         </div>
     </footer>
 
+    <script>
+        // Sample image data
+        const imageData = [
+            { id: 1, title: "Mountain Sunrise", category: "nature", description: "Beautiful sunrise over snow-capped mountains with pink sky", src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 2, title: "City Skyline", category: "city", description: "Modern city skyline at dusk with colorful lights", src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 3, title: "Beach Paradise", category: "travel", description: "Tropical beach with turquoise water and palm trees", src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w-1350&q=80" },
+            { id: 4, title: "Abstract Art", category: "abstract", description: "Colorful abstract painting with fluid shapes", src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 5, title: "Forest Path", category: "nature", description: "Sunlit path through a dense green forest", src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 6, title: "Urban Architecture", category: "city", description: "Modern architectural building with geometric patterns", src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 7, title: "Desert Adventure", category: "travel", description: "Golden sand dunes under a clear blue sky", src: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 8, title: "Modern Art", category: "art", description: "Contemporary art piece with bold colors and textures", src: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 9, title: "Waterfall Magic", category: "nature", description: "Majestic waterfall in a lush green canyon", src: "https://images.unsplash.com/photo-1512273222628-4daea6e55abb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 10, title: "Night City", category: "city", description: "City lights reflecting on wet streets at night", src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 11, title: "Mountain Village", category: "travel", description: "Traditional village nestled in mountain valley", src: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 12, title: "Color Splash", category: "abstract", description: "Vibrant colors blending together in fluid motion", src: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 13, title: "Wildlife Portrait", category: "nature", description: "Close-up portrait of a majestic wild animal", src: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 14, title: "Bridge Perspective", category: "city", description: "Architectural bridge with leading lines", src: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 15, title: "Cultural Festival", category: "travel", description: "Traditional festival with colorful costumes", src: "https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" },
+            { id: 16, title: "Sculpture Art", category: "art", description: "Modern sculpture in a public space", src: "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" }
+        ];
+
+        // Bento grid layout patterns for different screen sizes
+        const bentoPatterns = {
+            small: [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2],
+            medium: [2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1],
+            large: [2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2]
+        };
+
+        // DOM elements
+        const bentoGrid = document.getElementById('bentoGrid');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const emptyState = document.getElementById('emptyState');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalCategory = document.getElementById('modalCategory');
+        const closeModal = document.getElementById('closeModal');
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // Initialize the grid
+        function initGrid() {
+            renderGrid(imageData);
+            setupEventListeners();
+        }
+
+        // Render grid with images
+        function renderGrid(images) {
+            bentoGrid.innerHTML = '';
+
+            if (images.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Determine current screen size for layout pattern
+            const width = window.innerWidth;
+            let pattern;
+            if (width < 640) pattern = bentoPatterns.small;
+            else if (width < 1024) pattern = bentoPatterns.medium;
+            else pattern = bentoPatterns.large;
+
+            images.forEach((image, index) => {
+                const span = pattern[index % pattern.length];
+
+                // Create bento item
+                const bentoItem = document.createElement('div');
+                bentoItem.className = `bento-item rounded-2xl bg-white shadow-lg overflow-hidden cursor-pointer col-span-1 row-span-${span}`;
+                bentoItem.setAttribute('data-id', image.id);
+                bentoItem.setAttribute('data-category', image.category);
+
+                // Highlight search term in title
+                let displayTitle = image.title;
+                if (currentSearch) {
+                    const regex = new RegExp(`(${currentSearch})`, 'gi');
+                    displayTitle = image.title.replace(regex, '<span class="search-highlight">$1</span>');
+                }
+
+                bentoItem.innerHTML = `
+                <div class="relative h-full group">                    
+                    <div class="image-container h-full">
+                        <img src="${image.src}" alt="${image.title}" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="font-bold text-lg mb-2">${displayTitle}</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 bg-${getCategoryColor(image.category)}-600 bg-opacity-90 rounded-full text-xs font-medium">
+                                    ${image.category.charAt(0).toUpperCase() + image.category.slice(1)}
+                                </span>
+                                <button class="view-btn px-4 py-1.5 bg-white text-gray-800 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors shadow-md">
+                                    View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                // Add click event to open modal
+                bentoItem.addEventListener('click', (e) => {
+                    // Don't open modal if clicking the close button
+                    if (!e.target.closest('.close-btn')) {
+                        openImageModal(image);
+                    }
+                });
+
+                bentoGrid.appendChild(bentoItem);
+            });
+        }
+
+        // Remove bento item with animation
+        function removeBentoItem(id) {
+            if (!confirm('Are you sure you want to remove this image?')) {
+                return;
+            }
+
+            const item = document.querySelector(`[data-id="${id}"]`);
+            if (item) {
+                // Add animation class
+                item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8) translateY(20px)';
+
+                // Remove from imageData array
+                const index = imageData.findIndex(img => img.id === id);
+                if (index !== -1) {
+                    imageData.splice(index, 1);
+                }
+
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    item.remove();
+
+                    // Check if grid is empty
+                    if (bentoGrid.children.length === 0) {
+                        emptyState.classList.remove('hidden');
+                    } else {
+                        // Re-render grid to maintain proper layout
+                        filterImages();
+                    }
+                }, 400);
+            }
+        }
+
+        // Get category color
+        function getCategoryColor(category) {
+            const colors = {
+                nature: 'green',
+                city: 'blue',
+                travel: 'yellow',
+                art: 'pink',
+                abstract: 'purple'
+            };
+            return colors[category] || 'gray';
+        }
+
+        // Filter and search images
+        function filterImages() {
+            let filtered = imageData;
+
+            // Apply category filter
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(img => img.category === currentFilter);
+            }
+
+            // Apply search filter
+            if (currentSearch) {
+                const searchTerm = currentSearch.toLowerCase();
+                filtered = filtered.filter(img =>
+                    img.title.toLowerCase().includes(searchTerm) ||
+                    img.category.toLowerCase().includes(searchTerm) ||
+                    img.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderGrid(filtered);
+        }
+
+        // Open image modal
+        function openImageModal(image) {
+            modalImage.src = image.src;
+            modalImage.alt = image.title;
+            modalTitle.textContent = image.title;
+            modalDescription.textContent = image.description;
+            modalCategory.textContent = image.category.charAt(0).toUpperCase() + image.category.slice(1);
+            modalCategory.className = `px-3 py-1 bg-${getCategoryColor(image.category)}-100 text-${getCategoryColor(image.category)}-700 rounded-full text-sm font-medium`;
+
+            imageModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close image modal
+        function closeImageModal() {
+            imageModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search input
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase().trim();
+                clearSearch.classList.toggle('hidden', !currentSearch);
+                filterImages();
+            });
+
+            // Clear search
+            if (clearSearch) {
+                clearSearch.addEventListener('click', () => {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    clearSearch.classList.add('hidden');
+                    filterImages();
+                });
+            }
+
+            // Filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-opacity-20');
+                    });
+
+                    if (button.dataset.filter === 'all') {
+                        button.classList.remove('bg-blue-100');
+                        button.classList.add('bg-blue-600', 'text-white');
+                    } else {
+                        const color = getCategoryColor(button.dataset.filter);
+                        button.classList.remove(`bg-${color}-100`);
+                        button.classList.add(`bg-${color}-600`, 'text-white');
+                    }
+
+                    currentFilter = button.dataset.filter;
+                    filterImages();
+                });
+            });
+
+            // Modal close
+            closeModal.addEventListener('click', closeImageModal);
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) closeImageModal();
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeImageModal();
+                if (e.key === '/' && e.target !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // Window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    filterImages();
+                }, 250);
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initGrid);
+
+        // Set first filter button as active if they exist
+        document.addEventListener('DOMContentLoaded', () => {
+            if (filterButtons.length > 0) {
+                filterButtons[0].classList.remove('bg-blue-100');
+                filterButtons[0].classList.add('bg-blue-600', 'text-white');
+            }
+        });
+
+
+        const sidebar = document.getElementById('chat-sidebar');
+        const chatWindow = document.getElementById('chat-window');
+        const headerName = document.getElementById('header-name');
+        const headerImg = document.getElementById('header-img');
+
+        function openChat(name, img) {
+            // Update header info
+            headerName.innerText = name;
+            headerImg.src = img;
+
+            // Logic for mobile responsiveness
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('hidden');
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex');
+            }
+        }
+
+        function closeChat() {
+            sidebar.classList.remove('hidden');
+            chatWindow.classList.add('hidden');
+            chatWindow.classList.remove('flex');
+        }
+
+        // Reset view if window is resized
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('hidden');
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex');
+            } else {
+                // Default to list view on mobile resize
+                closeChat();
+            }
+        });
+    </script>
 </body>
 
 </html>
