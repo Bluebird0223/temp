@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goovo | Modern Landing Page</title>
+    <title>Goovo | Travel Together</title>
     <meta name="description"
         content="A beautiful, modern landing page built with Tailwind CSS v4 featuring stunning gradients, glassmorphism, and smooth animations.">
 
@@ -231,7 +231,7 @@
 
 </head>
 
-<body class="min-h-screen text-white overflow-x-hidden flex flex-col bg-zinc-900">
+<body class="h-screen text-white overflow-hidden flex flex-col bg-zinc-900">
 
 
     <!-- Navigation -->
@@ -241,9 +241,12 @@
                 <div class="flex items-center gap-2 basis-36">
                     <div class="">
                         <!-- <span class="text-xl font-bold">G</span> -->
-                        <span class="text-xl font-bold goovo-brand"><span class="goovo-part1"
-                                style="color: #f5f5f0;">Goo</span><span class="goovo-part2"
-                                style="color: #90EE90;">vo</span></span>
+                        <span class="text-xl font-bold goovo-brand">
+                            <span class="goovo-part1"
+                                style="color: #f5f5f0; text-shadow: 0 0 4px rgba(245, 245, 240, 0.8), 0 0 6px rgba(245, 245, 240, 0.5);">Goo</span><span
+                                class="goovo-part2"
+                                style="color: #90EE90; text-shadow: 0 0 6px rgba(144, 238, 144, 0.8), 0 0 6px rgba(144, 238, 144, 0.5);">vo</span>
+                        </span>
                     </div>
                 </div>
 
@@ -288,138 +291,47 @@
             </div>
         </div>
     </nav>
-    <main class="grow">
+    <main class="flex-1 overflow-hidden min-h-0">
 
         <!-- create plan -->
-        <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
-            <h1 class="text-3xl font-bold text-white mb-8">Create New Plan</h1>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">Plan Title</label>
-                    <input type="text"
-                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
-                        placeholder="e.g. Summer Trip to Bali">
-                </div>
-
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">Description</label>
-                    <textarea
-                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 h-32 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
-                        placeholder="Describe the adventure..."></textarea>
-                </div>
-
-                <div class="space-y-2 relative">
-                    <label class="text-sm font-medium text-zinc-400">Destination</label>
-                    <div class="relative">
-                        <input type="text" list="destinations"
-                            class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none"
-                            placeholder="Search city...">
-                        <datalist id="destinations">
-                            <option value="Paris, France">
-                            <option value="Tokyo, Japan">
-                            <option value="New York, USA">
-                            <option value="Bali, Indonesia">
-                        </datalist>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">Cover Image</label>
-                    <div class="relative w-full">
-                        <input type="file" id="file-upload" class="hidden">
-                        <label for="file-upload"
-                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
-                            <span class="truncate">Choose image...</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                            </svg>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">Start Date</label>
-                    <input type="date"
-                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">End Date</label>
-                    <input type="date"
-                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">Total Members</label>
-                    <div
-                        class="flex items-center bg-zinc-900/50 border border-zinc-700 rounded-xl overflow-hidden h-[50px]">
-                        <button type="button"
-                            class="px-4 h-full hover:bg-zinc-800 text-white border-r border-zinc-700">-</button>
-                        <input type="number" value="1"
-                            class="w-full bg-transparent text-center text-white outline-none appearance-none"
-                            style="-moz-appearance: textfield;">
-                        <button type="button"
-                            class="px-4 h-full hover:bg-zinc-800 text-white border-l border-zinc-700">+</button>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="text-sm font-medium text-zinc-400">More Image</label>
-                    <div class="relative w-full">
-                        <input type="file" id="file-upload" class="hidden">
-                        <label for="file-upload"
-                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
-                            <span class="truncate">Choose images...</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                            </svg>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="backdrop-blur-md lg:static lg:bg-transparent lg:border-none lg:p-0">
-                <button
-                    class="max-w-4xl mx-auto flex items-center justify-center w-full bg-green-400 hover:bg-green-500 text-black font-bold py-4 rounded-2xl shadow-lg shadow-green-500/20 transition-all active:scale-[0.98]">
-                    Create Travel Plan
-                </button>
-            </div>
-        </div>
-
-        <hr />
-        <div class="flex h-screen bg-zinc-950 text-white overflow-hidden font-sans">
-
+        <div class="h-full flex bg-zinc-950 text-white overflow-hidden font-sans">
             <aside id="chat-sidebar"
                 class="w-full md:w-80 lg:w-96 border-r border-zinc-800 flex flex-col bg-zinc-900/50 transition-all duration-300">
-                <div class="p-4 flex justify-between items-center">
-                    <h1 class="text-2xl font-bold">Chats</h1>
-                    <button class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                    </button>
+                <!-- Fixed header section -->
+                <div class="shrink-0">
+                    <div class="p-4 flex justify-between items-center">
+                        <h1 class="text-2xl font-bold">Messages</h1>
+                        <button class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-message-square-plus-icon lucide-message-square-plus">
+                                <path
+                                    d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+                                <path d="M12 8v6" />
+                                <path d="M9 11h6" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="px-4 mb-4">
+                        <input type="text" placeholder="Search Messenger"
+                            class="w-full bg-zinc-800 border-none rounded-full py-2 px-4 text-sm outline-none">
+                    </div>
+                    <hr class="border-zinc-800" />
                 </div>
 
-                <div class="px-4 mb-4">
-                    <input type="text" placeholder="Search Messenger"
-                        class="w-full bg-zinc-800 border-none rounded-full py-2 px-4 text-sm outline-none">
-                </div>
-
-                <div class="flex-1 overflow-y-auto space-y-1 px-2">
+                <!-- Scrollable chats list -->
+                <div class="flex-1 overflow-y-auto space-y-1 px-2 py-2 ">
+                    <!-- Chat item -->
                     <div onclick="openChat('Jane Cooper', 'https://i.pravatar.cc/150?u=jane')"
                         class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
                         <div class="relative">
                             <img src="https://i.pravatar.cc/150?u=jane" class="w-12 h-12 rounded-full object-cover">
-                            <div
-                                class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-zinc-900 rounded-full">
-                            </div>
+                            <!-- <div
+                        class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-zinc-900 rounded-full">
+                    </div> -->
                         </div>
                         <div class="flex-1 min-w-0">
                             <div class="flex justify-between items-baseline">
@@ -429,13 +341,125 @@
                             <p class="text-sm text-zinc-400 truncate">I'll send the travel plans over...</p>
                         </div>
                     </div>
+
+                    <!-- Add more chat items here for testing scrolling -->
+                    <div onclick="openChat('John Doe', 'https://i.pravatar.cc/150?u=john')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=john" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">John Doe</h3>
+                                <span class="text-xs text-zinc-500">5m</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Are we still meeting tomorrow?</p>
+                        </div>
+                    </div>
+
+                    <!-- Add more items to test scrolling... -->
+                    <div onclick="openChat('Alice Smith', 'https://i.pravatar.cc/150?u=alice')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=alice" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Alice Smith</h3>
+                                <span class="text-xs text-zinc-500">1h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Thanks for the help!</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+                    <div onclick="openChat('Bob Johnson', 'https://i.pravatar.cc/150?u=bob')"
+                        class="flex items-center gap-3 p-3 hover:bg-zinc-800 rounded-xl cursor-pointer transition">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/150?u=bob" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-semibold truncate">Bob Johnson</h3>
+                                <span class="text-xs text-zinc-500">2h</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 truncate">Can you review the document?</p>
+                        </div>
+                    </div>
+
                 </div>
             </aside>
 
             <main id="chat-window" class="hidden md:flex flex-1 flex-col bg-zinc-950 transition-all duration-300">
+                <!-- Fixed header -->
                 <header class="h-16 border-b border-zinc-800 flex items-center justify-between px-4 shrink-0">
                     <div class="flex items-center gap-3">
-                        <button onclick="closeChat()" class="md:hidden p-2 -ml-2 text-blue-500">
+                        <button onclick="closeChat()" class="md:hidden p-2 -ml-2 text-green-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -450,107 +474,88 @@
                     </div>
                 </header>
 
+                <!-- Scrollable messages area -->
                 <div class="flex-1 overflow-y-auto p-4 space-y-4">
-                    <div class="flex items-end gap-2 max-w-[75%]">
-                        <div class="bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm">
+                    <div class="items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
                             Hey! Select a chat to see how the transition works.
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
                         </div>
                     </div>
+
+                    <!-- Add more messages to test scrolling -->
+                    <div class="flex items-end gap-2 max-w-[75%] ml-auto justify-end">
+                        <div class="flex flex-col bg-green-700 p-3 rounded-2xl rounded-br-none text-sm gap-2 pb-1">
+                            This is a test message from me!
+                            <span class="text-[10px] text-zinc-400 self-end">12:00 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
+                            Another message to show scrolling works properly
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
+                            Another message to show scrolling works properly
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
+                            Another message to show scrolling works properly
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
+                            Another message to show scrolling works properly
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="flex items-end gap-2 max-w-[75%]">
+                        <div class="flex flex-col bg-zinc-800 p-3 rounded-2xl rounded-bl-none text-sm gap-2 pb-1">
+                            Another message to show scrolling works properly
+                            <span class="text-[10px] text-zinc-500">12:00 PM</span>
+                        </div>
+                    </div>
+
+                    <!-- Add more messages here... -->
                 </div>
 
-                <footer class="p-4 bg-zinc-950 border-t border-zinc-800">
-                    <div class="flex items-center gap-3">
+                <!-- Fixed footer -->
+                <footer class="p-3 bg-zinc-950 border-t border-zinc-800 shrink-0">
+                    <div class="flex items-center gap-3 justify-between">
+                        <button class="rounded-full p-2 font-bold hover:bg-zinc-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </button>
                         <input type="text" placeholder="Aa"
-                            class="flex-1 bg-zinc-800 rounded-full px-4 py-2 outline-none text-sm">
-                        <button class="text-blue-500 font-bold">Send</button>
+                            class="flex-1 bg-zinc-800 rounded-full px-4 py-2 outline-none text-sm ">
+                        <button class="p-2 rounded-full hover:bg-zinc-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-send-horizontal-icon lucide-send-horizontal">
+                                <path
+                                    d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                                <path d="M6 12h16" />
+                            </svg></button>
                     </div>
                 </footer>
             </main>
         </div>
 
-        <hr />
-
-        <!-- explore -->
-        <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
-            <h1 class="text-3xl font-bold text-white mb-8">Explore</h1>
-            <div class="mb-8 md:mb-12">
-                <div class="relative max-w-2xl mx-auto">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                        <i class="fas fa-search text-[#f5f5f0]"></i>
-                    </div>
-                    <input type="text" id="searchInput"
-                        class="w-full p-4 pl-12 text-[#f5f5f0] bg-transparent rounded-xl border border-zinc-500 shadow-lg focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all duration-100 outline-none"
-                        placeholder="Search images by title, category, or description...">
-                    <!-- <button id="clearSearch"
-                        class="absolute inset-y-0 right-0 flex items-center pr-4 text-zinc-400 hover:text-zinc-400 hidden">
-                        <i class="fas fa-times"></i>
-                    </button> -->
-                </div>
-                <!-- <div class="flex flex-wrap justify-center gap-2 mt-4">
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors"
-                        data-filter="all">All</button>
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium hover:bg-green-200 transition-colors"
-                        data-filter="nature">Nature</button>
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium hover:bg-purple-200 transition-colors"
-                        data-filter="city">City</button>
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors"
-                        data-filter="travel">Travel</button>
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium hover:bg-pink-200 transition-colors"
-                        data-filter="art">Art</button>
-                    <button
-                        class="filter-btn px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium hover:bg-indigo-200 transition-colors"
-                        data-filter="abstract">Abstract</button>
-                </div> -->
-            </div>
-
-            <!-- Bento Grid Container -->
-            <div id="bentoGrid"
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto">
-                <!-- Bento items will be dynamically generated here -->
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="hidden text-center py-16">
-                <i class="fas fa-image text-gray-300 text-6xl mb-4"></i>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">No images found</h3>
-                <p class="text-gray-500 max-w-md mx-auto">Try adjusting your search or filter to find what you're
-                    looking for.</p>
-            </div>
-
-            <!-- Image Modal -->
-            <div id="imageModal"
-                class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 hidden">
-                <div class="relative max-w-4xl w-full max-h-[90vh]">
-                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
-                        <!-- Close button inside the modal at top right -->
-                        <button id="closeModal"
-                            class="absolute top-4 right-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 z-10"
-                            title="Close">
-                            <i class="fas fa-times text-lg"></i>
-                        </button>
-
-                        <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain">
-                        <div class="p-6 relative">
-                            <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2 pr-10"></h3>
-                            <p id="modalDescription" class="text-gray-600 mb-4"></p>
-                            <div class="flex flex-wrap gap-2">
-                                <span id="modalCategory"
-                                    class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 py-4 border-t border-white/10">
+    <!-- <footer class="relative z-10 py-4 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 py-2">
 
             <div class="flex flex-col md:flex-row items-center justify-between gap-2">
@@ -578,7 +583,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <script>
         // Sample image data
@@ -900,6 +905,25 @@
                 closeChat();
             }
         });
+
+        function openChat(name, img) {
+            document.getElementById('header-name').textContent = name;
+            document.getElementById('header-img').src = img;
+            document.getElementById('chat-window').classList.remove('hidden');
+
+            // On mobile, hide sidebar when opening chat
+            if (window.innerWidth < 768) {
+                document.getElementById('chat-sidebar').classList.add('hidden');
+            }
+        }
+
+        function closeChat() {
+            // On mobile, show sidebar when closing chat
+            if (window.innerWidth < 768) {
+                document.getElementById('chat-sidebar').classList.remove('hidden');
+                document.getElementById('chat-window').classList.add('hidden');
+            }
+        }
     </script>
 </body>
 

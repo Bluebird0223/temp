@@ -1,0 +1,158 @@
+create plan
+
+<!-- <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
+            <h1 class="text-3xl font-bold text-white mb-8">Create New Plan</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Plan Title</label>
+                    <input type="text"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
+                        placeholder="e.g. Summer Trip to Bali">
+                </div>
+
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Description</label>
+                    <textarea
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 h-32 focus:border-green-400 focus:ring-1 focus:ring-green-400 outline-none transition-all"
+                        placeholder="Describe the adventure..."></textarea>
+                </div>
+
+                <div class="space-y-2 relative">
+                    <label class="text-sm font-medium text-zinc-400">Destination</label>
+                    <div class="relative">
+                        <input type="text" list="destinations"
+                            class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none"
+                            placeholder="Search city...">
+                        <datalist id="destinations">
+                            <option value="Paris, France">
+                            <option value="Tokyo, Japan">
+                            <option value="New York, USA">
+                            <option value="Bali, Indonesia">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Cover Image</label>
+                    <div class="relative w-full">
+                        <input type="file" id="file-upload" class="hidden">
+                        <label for="file-upload"
+                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
+                            <span class="truncate">Choose image...</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Start Date</label>
+                    <input type="date"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">End Date</label>
+                    <input type="date"
+                        class="w-full bg-zinc-900/50 text-white border border-zinc-700 rounded-xl px-4 py-3 focus:border-green-400 outline-none [color-scheme:dark]">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">Total Members</label>
+                    <div
+                        class="flex items-center bg-zinc-900/50 border border-zinc-700 rounded-xl overflow-hidden h-[50px]">
+                        <button type="button"
+                            class="px-4 h-full hover:bg-zinc-800 text-white border-r border-zinc-700">-</button>
+                        <input type="number" value="1"
+                            class="w-full bg-transparent text-center text-white outline-none appearance-none"
+                            style="-moz-appearance: textfield;">
+                        <button type="button"
+                            class="px-4 h-full hover:bg-zinc-800 text-white border-l border-zinc-700">+</button>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-zinc-400">More Image</label>
+                    <div class="relative w-full">
+                        <input type="file" id="file-upload" class="hidden">
+                        <label for="file-upload"
+                            class="flex items-center justify-between w-full bg-zinc-900/50 text-zinc-400 border border-zinc-700 border-dashed rounded-xl px-4 py-3 cursor-pointer hover:bg-zinc-800 transition-all">
+                            <span class="truncate">Choose images...</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="backdrop-blur-md lg:static lg:bg-transparent lg:border-none lg:p-0">
+                <button
+                    class="max-w-4xl mx-auto flex items-center justify-center w-full bg-green-400 hover:bg-green-500 text-black font-bold py-4 rounded-2xl shadow-lg shadow-green-500/20 transition-all active:scale-[0.98]">
+                    Create Travel Plan
+                </button>
+            </div>
+        </div>
+
+        <hr /> -->
+
+
+explore
+
+
+<!-- <hr /> -->
+
+<!-- explore -->
+<!-- <div class="max-w-4xl mx-auto px-4 py-8 pb-24 relative min-h-screen">
+            <h1 class="text-3xl font-bold text-white mb-8">Explore</h1>
+            <div class="mb-8 md:mb-12">
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                        <i class="fas fa-search text-[#f5f5f0]"></i>
+                    </div>
+                    <input type="text" id="searchInput"
+                        class="w-full p-4 pl-12 text-[#f5f5f0] bg-transparent rounded-xl border border-zinc-500 shadow-lg focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all duration-100 outline-none"
+                        placeholder="Search images by title, category, or description...">
+                </div>
+            </div>
+
+            <div id="bentoGrid"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto">
+            </div>
+
+            <div id="emptyState" class="hidden text-center py-16">
+                <i class="fas fa-image text-gray-300 text-6xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">No images found</h3>
+                <p class="text-gray-500 max-w-md mx-auto">Try adjusting your search or filter to find what you're
+                    looking for.</p>
+            </div>
+
+            <div id="imageModal"
+                class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 hidden">
+                <div class="relative max-w-4xl w-full max-h-[90vh]">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                        <button id="closeModal"
+                            class="absolute top-4 right-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 z-10"
+                            title="Close">
+                            <i class="fas fa-times text-lg"></i>
+                        </button>
+
+                        <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain">
+                        <div class="p-6 relative">
+                            <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2 pr-10"></h3>
+                            <p id="modalDescription" class="text-gray-600 mb-4"></p>
+                            <div class="flex flex-wrap gap-2">
+                                <span id="modalCategory"
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
